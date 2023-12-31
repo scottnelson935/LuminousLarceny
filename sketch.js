@@ -51,6 +51,7 @@ let flashlightGroup;
 let beamGroup;
 let music = false;
 let smoke = false;
+let smokeInt;
 let crow = false;
 
 let disturbanceMeter = 0;
@@ -95,6 +96,8 @@ function preload() {
 function setup() {
   let cnv = new Canvas(400, 400);
 
+  timeProgress = 0;
+
   if (cnv.canvas) {
     let canvasContainer = document.getElementById('canvas-wrapper');
     if (canvasContainer) {
@@ -104,7 +107,7 @@ function setup() {
 
   noCursor();
   angleMode(DEGREES);
-  
+
 
   startTopColor = color(15, 20, 45);
   startBottomColor = color(25, 30, 55);
@@ -164,12 +167,17 @@ function playCrow() {
 }
 
 function smokeInterval() {
-  setInterval(generateSmoke, 800);
+    smokeInt = setInterval(generateSmoke, 800);
 }
 
 function draw() {
   if (intro) {
     bg();
+    if (bgMusic.isPlaying()) {
+      bgMusic.stop();
+    }
+    bgMusic.setVolume(0.5, 2, 0);
+
     image(bgGraphics, 0, 0);
     // image(starsGraphics, 0, 0);
     image(farmGraphics, 0, 0);
@@ -178,7 +186,7 @@ function draw() {
     textAlign(CENTER);
     textStyle(BOLD);
     textSize(30);
-    text('Press Space to start', width/2, height/4);
+    text('Press Space to start', width / 2, height / 4);
     pop();
     push();
     fill('lightgrey');
@@ -206,6 +214,7 @@ function draw() {
 
     if (!isThief) {
       makeSprites();
+      print("sprites made");
       isThief = true;
     }
 
@@ -233,7 +242,7 @@ function draw() {
         windows[oldestWindowIndex].setLightStatus(false);
         lightOffSound.play();
       }
-      
+
     }
 
     //disturbanceMeter
@@ -382,7 +391,7 @@ function draw() {
     flashlight.updateAngle();
     flashlight.display();
 
-    if (disturbanceMeter === MAX_DISTURBANCE) {
+    if (disturbanceMeter === MAX_DISTURBANCE || kb.presses('u')) {
       for (let win of windows) {
         win.col = "yellow";
         win.setLightStatus(true);
@@ -393,16 +402,17 @@ function draw() {
       if (bgMusic.isPlaying()) {
         bgMusic.setLoop(false);
       }
+      playState = false;
       endGame = true;
     }
 
-    if (timeProgress >= 1) {
+    if (timeProgress >= 1 || kb.presses('i')) {
       for (let win of windows) {
         win.col = "yellow";
         win.setLightStatus(true);
         win.display();
       }
-
+      bgMusic.setVolume(0, 2, 0);
       if (bgMusic.isPlaying()) {
         bgMusic.setLoop(false);
       }
@@ -411,6 +421,7 @@ function draw() {
         playCrow();
         crow = true;
       }
+      playState = false;
       endGame = true;
     }
   }
@@ -418,6 +429,7 @@ function draw() {
   if (endGame) {
 
     allSprites.remove();
+    print("sprites removed");
     // background(0);
     if (bgMusic.isPlaying()) {
       bgMusic.setLoop(false);
@@ -439,11 +451,29 @@ function draw() {
     textSize(16);
     text("Gold Collected: " + goldScore, width / 2, height / 2 - 75);
     pop();
+    push();
+    textAlign(CENTER);
+    textStyle(BOLD);
+    textSize(16);
+    text("Press Enter to restart", width / 2, height - 60);
+    pop();
 
-    if (windowTimeout) {
-      clearTimeout(windowTimeout);
+    // if (windowTimeout) {
+    //   clearTimeout(windowTimeout);
+    // }
+    // redraw();
+
+    if (kb.presses('enter')) {
+      endGame = false;
+      isThief = false;
+      music = false;
+      smoke = false;
+      clearInterval(smokeInt);
+      crow = false;
+      setup();
+      intro = true;
     }
-    redraw();
+
     // noLoop();
   }
 }
