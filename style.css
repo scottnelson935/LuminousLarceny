@@ -14,7 +14,7 @@ main {
 }
 
 #canvas-wrapper {
-  transform-origin: center;
+  transform-origin: center center;
 }
 
 #title-container, #instructions-container {
@@ -35,18 +35,25 @@ main {
   font-size: 1.5rem;
 }
 
+#title-container h3 {
+  color: rgb(180, 180, 180);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  
+  text-align: right;
+  font-size: 0.8rem;
+}
+
 #instructions-container h2 {
   color: rgb(180, 180, 180);
   font-family: 'Courier New', Courier, monospace;
   font-style: bold;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   text-align: left;
 }
 
 #instructions-container p {
   color: rgb(180, 180, 180);
   font-family: 'Courier New', Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   text-align: left;
 }
 
