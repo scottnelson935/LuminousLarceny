@@ -1,3 +1,5 @@
+// version 1.0 | Jan. 08, 2024 | Scott Nelson
+
 // Game idea: 2-player collaborative game where one player controls the flashlight to reveal treasure so the other player, the thief, can locate it and pick it up. The treasure is invisible and ungrabbable without the beam of light from the flashlight.
 
 // Treasure chests contain a random amount of gold within a certain range.
