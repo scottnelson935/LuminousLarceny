@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+    <script src="https://p5play.org/v3/planck.min.js"></script>
+    <script src="https://p5play.org/v3/p5play.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <main>
+      <div id="title-container">
+          <h1>LUMINOUS<br>LARCENY</h1>
+          <p>by <a href="">Scott Nelson</a></p>
+      </div>
+
+      <div id="canvas-wrapper">
+        <div id="canvas-container"></div>
+      </div>
+
+      <div id="instructions-container">
+        <h2>INSTRUCTIONS</h2>
+        <p>Two players work together<br>to steal the treasure<br>before the rooster crows<br>and the farm family wakes!</p>
+        <p></p>
+        <h2>CONTROLS</h2>
+        <p>One player uses<br>WASD to control thief</p>
+        <p>The other player uses<br>mouse to move flashlight</p>
+        <p>Left click to toggle<br>flashlight on/off</p>
+        <h2>STRATEGIC CONSIDERATIONS</h2>
+        <p>Grabbing treasure<br>makes a loud noise!</p>
+        <p>Flashlight can be<br>toggled off at any time,<br>but can only be toggled<br>on at full battery</p>
+        <p>All treasures have<br>unique values,<br>and their locations<br>are transient</p>
+        <p>Thief can't grab treasure<br>that isn't illuminated</p>
+      </div>
+      
+    </main>
+    <script src="sketch.js"></script>
+    <script src="JS/Flashlight.js"></script>
+    <script src="JS/graphicsBuff.js"></script>
+    <script src="JS/Window.js"></script>
+    <script src="JS/Treasure.js"></script>
+  </body>
+</html>
