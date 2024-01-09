@@ -39,12 +39,14 @@ main {
   color: rgb(180, 180, 180);
   font-family: 'Courier New', Courier, monospace;
   font-style: bold;
+  font-size: 1.3rem;
   text-align: left;
 }
 
 #instructions-container p {
   color: rgb(180, 180, 180);
   font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
   text-align: left;
 }
 
